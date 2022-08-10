@@ -5,10 +5,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // import HomeScreen from "./screens/HomeScreen";
 // import AboutScreen from "./screens/AboutScreen";
-import react, { useState } from "react";
+import React, { useState } from "react";
 
-function HomeScreen(navigation, route) {
-  react.useEffect(() => {
+function HomeScreen({navigation, route}) {
+  React.useEffect(() => {
     if (route.params?.post) {
       //post
     }
@@ -29,7 +29,7 @@ function HomeScreen(navigation, route) {
 
 // <>  </> this is
 
-function CreatePostScreen(navigation) {
+function CreatePostScreen({navigation}) {
   const [postText, setPostText] = React.useState();
 
   return (
