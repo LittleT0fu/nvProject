@@ -7,7 +7,7 @@ const AboutScreen = ({route}) => {
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>About มี</Text>
       {/* <Text>Email : {email}</Text> */}
-      <Text>Email : {route.params.email}</Text>
+      <Text>Email : {route.params?.email}</Text>
     </View>
   )
 }

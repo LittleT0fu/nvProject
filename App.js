@@ -1,58 +1,67 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import { View, Text, button, TextInput } from "react-native";
+import React from "react";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from "@react-navigation/drawer";
+import { Button } from "react-native-web";
 
-// import HomeScreen from "./screens/HomeScreen";
-// import AboutScreen from "./screens/AboutScreen";
-import React, { useState } from "react";
-
-
-import FirstPage from "./reCapstackNavigation/FirstPage";
-import SecondPage from "./reCapstackNavigation/SecondPage"
-import ThirdPage from "./reCapstackNavigation/ThirdPage";
-
-
-
-// <>  </> this is
-
-
-const Stack = createNativeStackNavigator();
-
-export default function App() {
+function Feed({ navigation }) {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          headerStyle: { backgroundColor: "#007b9b" },
-          headerTintColor: "#ffff",
-          headerTitleStyle: { fontWeight: "bold", fontSize: 40 },
-        }}
-      >
-        <Stack.Screen name="First Page" component={FirstPage} />
-        <Stack.Screen name="Second Page" component={SecondPage} />
-        <Stack.Screen name="Third Page" component={ThirdPage} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Feed Screen</Text>
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: 20,
-  },
-  heading: {
-    fontSize: 25,
-    textAlign: "center",
-    marginVertical: 10,
-  },
-  textStyle: {
-    textAlign: "center",
-    fontSize: 16,
-    marginVertical: 10,
-  },
-});
+function Article({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Article Screen</Text>
+    </View>
+  );
+}
+
+function CustomDrawerContent (props){
+  return(
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props}/>
+      <DrawerItem label = 'Help' onPress = {()=> alert('Link to help')} />
+    </DrawerContentScrollView>
+  )
+}
+
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
+  return(
+    <Drawer.Navigator useLegacyImplementation 
+    drawerContent={ (props)=> <CustomDrawerContent {...props} />} 
+    screenOptions={{
+      drawerStyle:{
+        backgroundColor : 'red',
+        width : 240
+      }
+    }}
+      
+    >
+    <Drawer.Screen name="Feed" component={Feed} />
+    <Drawer.Screen name="Article" component={Article} />
+  </Drawer.Navigator>
+  )
+  ;}
+
+const App = () => {
+  return (
+    <NavigationContainer>
+     <MyDrawer/>
+    </NavigationContainer>
+  );
+};
+
+export default App;
