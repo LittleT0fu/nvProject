@@ -7,8 +7,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // import AboutScreen from "./screens/AboutScreen";
 import React, { useState } from "react";
 
-import FirstPage from "./screens/FirstPage";
-import SecondPage from "./screens/SecondPage";
+
+import FirstPage from "./reCapstackNavigation/FirstPage";
+import SecondPage from "./reCapstackNavigation/SecondPage"
+import ThirdPage from "./reCapstackNavigation/ThirdPage";
 
 
 
@@ -30,6 +32,7 @@ export default function App() {
       >
         <Stack.Screen name="First Page" component={FirstPage} />
         <Stack.Screen name="Second Page" component={SecondPage} />
+        <Stack.Screen name="Third Page" component={ThirdPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
