@@ -1,12 +1,13 @@
 import { View, Text, StyleSheet , Button } from "react-native";
 import React from "react";
+import reCapStyles from "./reCapStyles";
 
 const ThirdPage = ({ navigation }) => {
   return (
     <>
-    <View style={styles.container}>
-      <View style={{flex : 1,justifyContent : "center"}}>
-        <Text style= {styles.textTopStyle}>This is Third page</Text>
+    <View style={reCapStyles.container}>
+      <View style={{flex : 1,justifyContent : "center", alignItems:"center"}}>
+        <Text style= {reCapStyles.textTopStyle}>This is Third page</Text>
         <Button
             title="second page"
             onPress={() => navigation.navigate("First Page",{})}
@@ -19,7 +20,7 @@ const ThirdPage = ({ navigation }) => {
     </View>
     <View style={{ alignItems: "center" }}>
       <Text
-        style={styles.textBottomStyle}
+        style={reCapStyles.textBottomStyle}
       >
          Thai-Nichi Institute of Technology
       </Text>
@@ -29,20 +30,3 @@ const ThirdPage = ({ navigation }) => {
 };
 
 export default ThirdPage;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-  },
-  textTopStyle: {
-    fontSize: 25,
-    textAlign: "center",
-    marginBottom: 16,
-  },
-  textBottomStyle: {
-    fontSize: 16,
-    textAlign: "center",
-    color: "grey",
-  },
-});
