@@ -10,7 +10,6 @@ import {
   DrawerItem,
 } from "@react-navigation/drawer";
 import { Button } from "react-native-web";
-import HomeScreen from "./screens/HomeScreen_Drawer";
 
 const MyTheme = {
   ...DefaultTheme,
@@ -59,10 +58,10 @@ function MyDrawer() {
         drawerStyle: {
           backgroundColor: "white",
           width: 240,
-        }
+        },
       }}
     >
-      <Drawer.Screen name="Home" component={HomeScreen} />
+      <Drawer.Screen name="Feed" component={Feed} />
     </Drawer.Navigator>
   );
 }
