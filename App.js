@@ -1,44 +1,71 @@
-import { View, Text ,Button } from 'react-native'
-import React from 'react'
-import {NavigationContainer} from '@react-navigation/native'
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import { View, Text, Button } from "react-native";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from "@expo/vector-icons";
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from "@react-navigation/drawer";
+import HomeScreen from "./screens/HomeScreen_Drawer";
 
-function HomeScreen({navigation}) {
-  return(
-    <View style={ {flex:1,justifyContent:'center',alignItems:'center'}}>
-      <Text>โฮม!</Text>
-      <Button title="Go to Setting" onPress={()=>navigation.navigate("Setting")}/>
-    </View>
-  )
-}
 
-function SettingScreen({navigation}) {
-  return(
-    <View style={ {flex:1,justifyContent:'center',alignItems:'center'}}>
+function SettingScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Setting!</Text>
-      <Button title="Go to Home" onPress={()=>navigation.navigate("Home")}/>
+      <Button title="Go to Home" onPress={() => navigation.Navigator("Home")} />
     </View>
-  )
+  );
 }
 
 const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
-function MyTab(){
-  return(
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen}/>
-      <Tab.Screen name="Setting" component={SettingScreen} />
-    </Tab.Navigator>
-  )
+
+function MyDrawer() {
+  return (
+    <Drawer.Navigator useLegacyImplementation >
+      <Drawer.Screen name='Home' component={MyTab} />
+      <Drawer.Screen name='Setting' component={SettingScreen}/>
+    </Drawer.Navigator>
+  );
 }
 
+
+function MyTab({navigation}) {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === "Home") {
+            iconName = focused
+              ? "ios-information-circle"
+              : "ios-information-circle-outline";
+          } else if (route.name === "Setting") {
+            iconName = focused ? "ios-list" : "ios-list-outline";
+          }
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: "tomato",
+        tabBarInactiveTintColor: "gray",
+      })}
+    >  
+      <Tab.Screen name="Home" component={HomeScreen}  />
+      <Tab.Screen name="Setting" component={SettingScreen} />
+    </Tab.Navigator>
+  );
+}
 
 const App = () => {
   return (
     <NavigationContainer>
-      <MyTab/>
+      <MyDrawer/>
     </NavigationContainer>
-  )
-}
+  );
+};
 
-export default App
+export default App;
