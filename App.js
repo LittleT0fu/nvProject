@@ -2,7 +2,7 @@ import { View, Text, button, TextInput, StyleSheet , Image } from "react-native"
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import { NavigationContainer, DefaultTheme, StackActions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   createDrawerNavigator,
@@ -11,6 +11,8 @@ import {
   DrawerItem,
 } from "@react-navigation/drawer";
 import { Button, SafeAreaView } from "react-native-web";
+
+// import page
 import HomeScreen from "./screens/HomeScreen_Drawer";
 import ProductScreen from "./screens/ProductScreen";
 import DetailScreen from "./screens/DetailScreen";
@@ -56,7 +58,27 @@ function CustomDrawerContent(props) {
   );
 }
 
+const stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
+
+
+function productStack(){
+  return(
+    <stack.Navigator screenOptions={{
+      headerStyle:{
+        backgroundColor:'black'
+      },
+      headerTintColor:'white',
+      headerTitle:{
+        fontWeight:'bold'
+      },
+
+    }}> 
+      <stack.Screen name="Product" component={ProductScreen}/>
+      <stack.Screen name="Detail" component={DetailScreen} />
+   </stack.Navigator>
+  )
+}
 
 function MyDrawer() {
   return (
@@ -71,8 +93,7 @@ function MyDrawer() {
       }}
     >
       <Drawer.Screen name="Home" component={HomeScreen} />
-      <Drawer.Screen name="product" component={ProductScreen}/>
-      <Drawer.Screen name="Detail" component={DetailScreen}/>
+      <Drawer.Screen name="product" component={productStack}/>
     </Drawer.Navigator>
   );
 }
